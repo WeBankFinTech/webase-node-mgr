@@ -391,7 +391,12 @@ public class UserService {
     public String getSignUserIdByAddress(int groupId, String address) throws NodeMgrException {
         TbUser user = queryUser(null, groupId, null, address, null);
         if (user == null) {
-            throw new NodeMgrException(ConstantCode.USER_NOT_EXIST);
+            throw new NodeMgrException(ConstantCode.USER_SIGN_USER_ID_NOT_EXIST);
+        }
+        if (StringUtils.isBlank(user.getSignUserId())) {
+            log.error("getSignUserIdByAddress userAddress's signUserId not exist, address:{}",
+                address);
+            throw new NodeMgrException(ConstantCode.USER_SIGN_USER_ID_NOT_EXIST);
         }
         return user.getSignUserId();
     }

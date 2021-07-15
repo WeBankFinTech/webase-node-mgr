@@ -92,7 +92,7 @@ public class ExtAccountService {
         TbExternalAccount update = extAccountMapper.selectByPrimaryKey(accountId);
         if (update == null) {
             log.error("updateAccountInfo id not exist!");
-            throw new NodeMgrException(ConstantCode.USER_NOT_EXIST);
+            throw new NodeMgrException(ConstantCode.ACCOUNT_NOT_EXISTS);
         }
         update.setUserName(userName);
         update.setSignUserId(signUserId);

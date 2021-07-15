@@ -81,7 +81,6 @@ public class ContractStoreService {
     /**
      * queryContractStore by id.
      * 
-     * @param contractStoreParam
      * @return
      */
     public TbContractStore queryContractStoreById(Integer id) {

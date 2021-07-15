@@ -15,12 +15,14 @@
  */
 package com.webank.webase.node.mgr.precompiled.entity;
 
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 
 @Data
 public class CrudHandle {
     private int groupId;
+    @NotBlank
     private String fromAddress;
     private String signUserId;
     private String sql;

@@ -236,7 +236,7 @@ public class  ContractService {
         String address = contract.getContractAddress();
         if (address != null) {
             if (address.length() != CONTRACT_ADDRESS_LENGTH) {
-                log.warn("fail sendAbi. inputAddress:{}", address);
+                log.warn("fail updateContract address. inputAddress:{}", address);
                 throw new NodeMgrException(ConstantCode.CONTRACT_ADDRESS_INVALID);
             }
             // check address on chain
@@ -244,11 +244,29 @@ public class  ContractService {
             log.info("updateContract contract address:{} and deployed status", address);
             tbContract.setContractAddress(address);
             tbContract.setContractStatus(ContractStatus.DEPLOYED.getValue());
+            // deploy success, old contract save in tb_abi
+            abiService.saveAbiFromContractId(contract.getContractId(), address);
         }
         contractMapper.update(tbContract);
         return tbContract;
     }
 
+    private void handleUpdateAddressAbi(Contract contract, TbContract tbContract) {
+        String address = contract.getContractAddress();
+        if (address == null) {
+            return;
+        }
+        if (address.length() != CONTRACT_ADDRESS_LENGTH) {
+            log.warn("fail sendAbi. inputAddress:{}", address);
+            throw new NodeMgrException(ConstantCode.CONTRACT_ADDRESS_INVALID);
+        }
+        // check address on chain
+        abiService.getAddressRuntimeBin(contract.getGroupId(), address);
+        log.info("updateContract contract address:{} and deployed status", address);
+        tbContract.setContractAddress(address);
+        tbContract.setContractStatus(ContractStatus.DEPLOYED.getValue());
+
+    }
 
     /**
      * delete contract by contractId.

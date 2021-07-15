@@ -245,6 +245,7 @@ public class AbiService {
     }
 
     public void saveAbiFromContractId(int contractId, String contractAddress) {
+        log.info("saveAbiFromContractId contractId:{},contractAddress:{}", contractId, contractAddress);
         TbContract tbContract = contractService.queryByContractId(contractId);
 
         int groupId = tbContract.getGroupId();

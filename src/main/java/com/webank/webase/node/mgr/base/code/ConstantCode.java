@@ -64,7 +64,7 @@ public class ConstantCode {
 
     public static final RetCode USER_ID_NULL = RetCode.mark(202012, "user id cannot be empty");
 
-    public static final RetCode INVALID_USER = RetCode.mark(202013, "invalid user");
+    public static final RetCode USER_NOT_EXIST = RetCode.mark(202013, "invalid user(NOT EXIST)");
 
     public static final RetCode USER_EXISTS = RetCode.mark(202014, "user already exists");
 
@@ -158,7 +158,7 @@ public class ConstantCode {
     public static final RetCode PARAM_FAIL_ABI_ID_EMPTY = RetCode.mark(202099, "Abi Id cannot be empty");
     public static final RetCode CONTRACT_ADDRESS_NULL = RetCode.mark(202100, "contractAddress is null");
 
-    public static final RetCode USER_NOT_EXIST = RetCode.mark(202110, "User's signUserId not exist");
+    public static final RetCode USER_SIGN_USER_ID_NOT_EXIST = RetCode.mark(202110, "User's signUserId not exist");
     /* Json parse error */
     public static final RetCode FAIL_PARSE_JSON = RetCode.mark(202111, "Fail to parse json");
 
